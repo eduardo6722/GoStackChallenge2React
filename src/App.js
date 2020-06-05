@@ -16,8 +16,9 @@ import { Chip, Link, Divider } from '@material-ui/core';
 import UIButton from './components/Button';
 
 const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
+  card: {
+    width: '94%',
+    maxWidth: 320,
     marginTop: 15,
   },
   bullet: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles({
     transform: 'scale(0.8)',
   },
   title: {
-    fontSize: 14,
+    fontWeight: 'bolder!important'
   },
   pos: {
     marginBottom: 12,
@@ -36,6 +37,18 @@ const useStyles = makeStyles({
     justifyContent: 'space-between',
     alignItems: 'baseline',
   },
+  formContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  cardsContainer: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    flexWrap: 'wrap'
+  },
+  chip: {
+    margin: 6
+  }
 });
 
 function App() {
@@ -80,15 +93,17 @@ function App() {
   return (
     <div className='app'>
       <UIAppbar color='primary' title='Meus Projetos' />
-      <RepositoryForm onClick={handleAddRepository} />
-      <div data-testid='repository-list'>
+      <div className={classes.formContainer}>
+        <RepositoryForm onClick={handleAddRepository} className={classes.form} />
+      </div>
+      <div data-testid='repository-list' className={classes.cardsContainer}>
         {repositories.map((repo) => (
-          <Card key={repo.id} className={classes.root}>
+          <Card key={repo.id} className={classes.card}>
             <CardContent>
               <Typography
-                className={classes.title}
-                color='textPrimary'
                 gutterBottom
+                variant='h6'
+                className={classes.title}
               >
                 {repo.title}
               </Typography>
@@ -96,7 +111,7 @@ function App() {
               <br />
               <Typography variant='body1' component='div'>
                 {repo?.techs?.map((tech, index) => (
-                  <Chip key={index} label={tech} />
+                  <Chip color='primary' key={index} label={tech} className={classes.chip} />
                 ))}
               </Typography>
               <br />

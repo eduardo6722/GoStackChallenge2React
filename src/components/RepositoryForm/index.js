@@ -32,18 +32,21 @@ function RepositoryForm({ onClick }) {
   return (
     <div className={classes.form}>
       <OutlinedInput
+        fullWidth
         placeholder='Título do repositório'
         className={classes.input}
         color='primary'
         onChange={handleChange('title')}
       />
       <OutlinedInput
+        fullWidth
         placeholder='Url do repositório'
         className={classes.input}
         color='primary'
         onChange={handleChange('url')}
       />
       <ChipInput
+        fullWidth
         variant='standard'
         placeholder='Tecnologias'
         value={repository.techs}
